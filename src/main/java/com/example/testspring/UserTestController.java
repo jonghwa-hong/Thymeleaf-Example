@@ -3,7 +3,9 @@ package com.example.testspring;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,4 +28,20 @@ public class UserTestController {
         model.addAttribute("content", "<div><span style='font-size:20px'>Hello World</span></div>");
         return "users";
     }
+
+    @GetMapping("/users/{userId}")
+    public String getUserList(@PathVariable String userId,
+                              User pUser,
+                              HttpSession session,
+                              Model model) {
+        session.setAttribute("userId", pUser.getUserId());
+
+        pUser.setName("테스터");
+        pUser.setAuthType("facebook");
+        System.out.println(pUser.toString());
+
+        model.addAttribute("user", pUser);
+        return "user";
+    }
+
 }
