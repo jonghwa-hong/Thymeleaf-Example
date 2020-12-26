@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Thymeleaf</title></head>
+<body>
+
+<div th:text="'Test name: ' + ${person.name} + '님'"></div>
+<div th:text="'Test age: ' + ${person.age} + '님'"></div>
+
+<table border="1">
+    <th>이</th>
+    <th>나이</th>
+    <th>키</th>
+    <th>자동차</th>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.age}"></td>
+        <td th:text="${item.height}"></td>
+        <td>
+            <p th:each="car,status : ${item.carList}">
+                <span th:text="'index:'+${status.index}"></span>
+                <span th:text="'count:'+${status.count}"></span>
+                <span th:text="'current:'+${status.current}"></span>
+                <span th:text="'size:'+${status.size}"></span>
+                <span th:text="'even:'+${status.even}"></span>
+                <span th:text="'odd:'+${status.odd}"></span>
+                <span th:text="'first:'+${status.first}"></span>
+                <span th:text="'last:'+${status.last}"></span>
+                <span th:text="'name:'+${car.name}"></span>
+            </p>
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
